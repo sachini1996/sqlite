@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Database</string>
+    <string name="n1">User name</string>
+    <string name="n2">name</string>
+    <string name="n3">Password</string>
+    <string name="n4">Password</string>
+    <string name="n5">Select All</string>
+    <string name="n6">ADD</string>
+    <string name="n7">SELECT ALL</string>
+    <string name="n8">SIGN IN</string>
+    <string name="n9">DELETE</string>
+    <string name="n10">UPDATE</string>
+</resources>
