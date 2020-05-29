@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         select = (Button) findViewById(R.id.b1);
         signIn = (Button) findViewById(R.id.b3);
         addInfo();
-        readAllInfo();
+        ReadAllInfo();
         deleteInfo();
         UpdateInfo();
-
+        readAllInfo();
     }
     public void addInfo(){
         add.setOnClickListener(
@@ -53,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-    public Cursor readAllInfo(){
+
+    public Cursor ReadAllInfo(){
         select.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Cursor res = myDb.readAllInfo();
+                        Cursor res = myDb.ReadAllInfo();
                         if(res.getCount() == 0){
                             //show message
                             showMessage("Error ","Nothing found");
@@ -66,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
-                            buffer.append("Id :" + res.getString(0) + "\n");
+                            //buffer.append("Id :" + res.getString(0) + "\n");
                             buffer.append("Name :" + res.getString(1) + "\n");
-                            buffer.append("Password :" + res.getString(2) + "\n\n");
+                           //buffer.append("Password :" + res.getString(2) + "\n\n");
 
                         }
 
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
+
     public void deleteInfo() {
         delete.setOnClickListener(
                 new View.OnClickListener() {

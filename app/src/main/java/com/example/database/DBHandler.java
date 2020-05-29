@@ -26,7 +26,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +"(ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT,PASSWORD TEXT)");
+        String SQL_CREATE_ENTRIES =
+                " CREATE TABLE " + UserMaster.Users.TABLE_NAME+"("+
+                        UserMaster.Users._ID + "INTEGER PRIMARY KEY,"+
+                        UserMaster.Users.COLUMN_NAME_USERNAME + " TEXT,"+
+                        UserMaster.Users.COLUMN_NAME_PASSWORD + " TEXT)";
+
+        db.execSQL(SQL_CREATE_ENTRIES);
     }
 
     @Override
@@ -34,21 +40,21 @@ public class DBHandler extends SQLiteOpenHelper {
        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
        onCreate(db);
     }
-    public boolean addInfo(String UserName, String Password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, UserName);
-        contentValues.put(COL_3, Password);
+    public void addInfo(String UserName, String Password) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues Values = new ContentValues();
+       Values.put(UserMaster.Users.COLUMN_NAME_USERNAME, UserName;
+       Values.put(UserMaster.Users.COLUMN_NAME_PASSWORD, Password);
 
 
-        long result = db.insert(TABLE_NAME, null, contentValues);
-        if (result == -1)
-            return false;
-        else
-            return true;
+        long newRowId = db.insert(UserMaster.Users.TABLE_NAME, null, Values);
+        //if (result == -1)
+            //return false;
+        //else
+            //return true;
     }
-    public List readAllInfo() {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public List ReadAllInfo() {
+        SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
                 UserMaster.Users._ID,
                 UserMaster.Users.COLUMN_NAME_USERNAME,
